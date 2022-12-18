@@ -5,7 +5,7 @@ A Text-based CPU benchmark aimed to be multiplatform with every Python-compatibl
 
 # Changelog
 
-<h2>v0.1.0</h2>
+<h2>v0.2.0</h2>
 
 <b>Features</b>
 
