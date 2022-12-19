@@ -7,6 +7,18 @@ A Text-based CPU benchmark aimed to be multiplatform with every Python-compatibl
 
 # Changelog
 
+<h2>v0.3.1</h2>
+
+<b>Features</b>
+
+- UI upgrades (Now everytime the system doesn't provide CPU info it would state "Undisclosed"
+
+<b>Bugs</b>
+
+- TBD
+
+<hr>
+
 <h2>v0.3.0</h2>
 
 <b>Features</b>
