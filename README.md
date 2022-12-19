@@ -7,6 +7,18 @@ A Text-based CPU benchmark aimed to be multiplatform with every Python-compatibl
 
 # Changelog
 
+<h2>v2.0.0</h2>
+
+<b>Features</b>
+
+- Multiprocessing implemented! Now it is possible to use a multicore mode to use up to 3 cores at the same time.
+
+<b>Bugs</b>
+
+- TBD
+
+<hr>
+
 <h2>v1.0.0</h2>
 
 <b>Features</b>
