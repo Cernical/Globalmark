@@ -6,7 +6,7 @@ import platform     #System info
 global integer
 global fp
 
-version = "0.3.1"
+version = "1.0.0"
 
 def punt():
     global integer
@@ -46,8 +46,10 @@ def algoflp():
     start_time = time.time()
 
     for x in range(90900900): #Noventa millones
-        resultado = 10 / 0x5F3759DF * (1 + x)
-        #print(resultado)
+        resultado1 = 10 / 0x5F3759DF * (1 + x)
+        resultado2 = 3.141592653589793 / (1 + x)
+        # print(resultado1)
+        # print(resultado2)
 
     fp = ("%s" % (time.time() - start_time))
     stop_time = time.time()
