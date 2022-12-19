@@ -6,7 +6,7 @@ import platform     #System info
 global integer
 global fp
 
-version = "0.3.0"
+version = "0.3.1"
 
 def punt():
     global integer
@@ -58,8 +58,13 @@ if __name__ == '__main__':
     print("Globalbench v"+version)
     print()
 
-    print("CPU:",platform.processor(),"System:",platform.system())
-    print("Python:",platform.python_version(),"Compiler:",platform.python_compiler())
+    if platform.processor() == "":
+        print("CPU:", "Undisclosed")
+    else:
+        print("CPU:", platform.processor())
+    print("System:", platform.system())
+    print("Python:", platform.python_version())
+    print("Compiler:", platform.python_compiler())
 
     print()
     print("Integer Benchmark...")
