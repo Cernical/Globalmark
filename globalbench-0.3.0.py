@@ -1,11 +1,12 @@
 #!/usr/bin/python3
 
 import time
+import platform     #System info
 
 global integer
 global fp
 
-version = "0.2.0"
+version = "0.3.0"
 
 def punt():
     global integer
@@ -55,6 +56,12 @@ def algoflp():
 
 if __name__ == '__main__':
     print("Globalbench v"+version)
+    print()
+
+    print("CPU:",platform.processor(),"System:",platform.system())
+    print("Python:",platform.python_version(),"Compiler:",platform.python_compiler())
+
+    print()
     print("Integer Benchmark...")
     algoint()
     print("FP Benchmark...")
