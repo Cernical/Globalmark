@@ -53,5 +53,3 @@ A Text-based CPU benchmark aimed to be multiplatform with every Python-compatibl
 <b>Bugs</b>
 
 - TBD
-
-<hr>
