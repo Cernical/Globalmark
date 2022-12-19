@@ -1,7 +1,7 @@
 # Globalbench
 A Text-based CPU benchmark aimed to be multiplatform with every Python-compatible device with shared scores.
 
-![Screenshot_20221218_012950](https://user-images.githubusercontent.com/84983282/208271360-d12cd568-3c80-4f76-8dfe-26c9a0c3aa82.png)
+![Screenshot_20221219_154526](https://user-images.githubusercontent.com/84983282/208451891-6f926fb8-eed7-4fd7-bddc-f1faea1e3ab3.png)
 
 # Changelog
 
