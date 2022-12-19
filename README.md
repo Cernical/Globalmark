@@ -7,6 +7,18 @@ A Text-based CPU benchmark aimed to be multiplatform with every Python-compatibl
 
 # Changelog
 
+<h2>v1.0.0</h2>
+
+<b>Features</b>
+
+- Added more load on the floating point operation.
+
+<b>Bugs</b>
+
+- TBD
+
+<hr>
+
 <h2>v0.3.1</h2>
 
 <b>Features</b>
