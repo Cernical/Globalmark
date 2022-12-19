@@ -5,6 +5,18 @@ A Text-based CPU benchmark aimed to be multiplatform with every Python-compatibl
 
 # Changelog
 
+<h2>v0.3.0</h2>
+
+<b>Features</b>
+
+- Added some basic system info such as CPU (Sometimes the actual model or just the architecture) and the python version and compiler.
+
+<b>Bugs</b>
+
+- TBD
+
+<hr>
+
 <h2>v0.2.1</h2>
 
 <b>Features</b>
