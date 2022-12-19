@@ -5,6 +5,18 @@ A Text-based CPU benchmark aimed to be multiplatform with every Python-compatibl
 
 # Changelog
 
+<h2>v0.2.1</h2>
+
+<b>Features</b>
+
+- Added Bash direct support for executing the script.
+
+<b>Bugs</b>
+
+- TBD
+
+<hr>
+
 <h2>v0.2.0</h2>
 
 <b>Features</b>
