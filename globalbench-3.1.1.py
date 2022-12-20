@@ -9,7 +9,7 @@ import subprocess # Necesario para usar el sistema y sus funciones
 global integer
 global fp
 
-version = "3.1.0"
+version = "3.1.1"
 nucleos = "1"
 stresstest = "0"
 rangobucle = 30900900
@@ -77,7 +77,7 @@ def test(stresstest):
     p6.terminate()
     p7.terminate()
     p8.terminate()
-    exit()
+    clear()
 
 def punt():
     global integer
@@ -295,12 +295,16 @@ if __name__ == '__main__':
         if nucleos == "0": print("Single-Core benchmark:")
         if nucleos != "0": print("Multi-Core benchmark:")
 
-        print()
-        print("Integer Benchmark...")
-        algoint(nucleos, rangobucle)
-        print("FP Benchmark...")
-        algoflp(nucleos, rangobucle)
-        punt()
-        print()
-        input("Press any key to continue: ")
-        clear()
+        while stresstest == "0":
+            print()
+            print("Integer Benchmark...")
+            algoint(nucleos, rangobucle)
+            print("FP Benchmark...")
+            algoflp(nucleos, rangobucle)
+            punt()
+            print()
+            input("Press any key to continue: ")
+            clear()
+            stresstest = "1" # Salida del bucle
+
+        stresstest = "0" # Reinicio variable
