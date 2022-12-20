@@ -7,6 +7,19 @@ A Text-based CPU benchmark aimed to be multiplatform with every Python-compatibl
 
 # Changelog
 
+<h2>v3.0.0</h2>
+
+<b>Features</b>
+
+- Now with added support of up to 8 cores.
+- UI improvements.
+
+<b>Bugs</b>
+
+- TBD
+
+<hr>
+
 <h2>v2.0.0</h2>
 
 <b>Features</b>
