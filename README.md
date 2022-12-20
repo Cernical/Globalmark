@@ -1,11 +1,44 @@
 # Globalbench
 A Text-based CPU benchmark aimed to be multiplatform with every Python-compatible device with shared scores.
 
+<b>Features</b>
+
+- Perform basic integer operations as sums, subtractions and multiplications as well as floating point.
+- Single-Core and Multi-Core modes to up to 8 cores of utilization.
+- A stress test mode.
+
+<hr>
+
 ![Screenshot_20221219_154526](https://user-images.githubusercontent.com/84983282/208451891-6f926fb8-eed7-4fd7-bddc-f1faea1e3ab3.png)
 
 ![Captura](https://user-images.githubusercontent.com/84983282/208455343-fd996a2b-3877-4a3d-b530-b6ffddae5e36.PNG)
 
 # Changelog
+
+<h2>v3.1.1</h2>
+
+<b>Features</b>
+
+- Fixed the last bug where the program would not function properly once you do a stress test.
+
+<b>Bugs</b>
+
+- TBD
+
+<hr>
+
+<h2>v3.1.0</h2>
+
+<b>Features</b>
+
+- Added a stress test that utilizes up to 8 cores.
+- UI improvements.
+
+<b>Bugs</b>
+
+- Wrong behaviour of the program once you finish a stress test.
+
+<hr>
 
 <h2>v3.0.0</h2>
 
