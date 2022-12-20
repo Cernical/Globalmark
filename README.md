@@ -9,7 +9,7 @@ A Text-based CPU benchmark aimed to be multiplatform with every Python-compatibl
 
 <hr>
 
-![Screenshot_20221221_005008](https://user-images.githubusercontent.com/84983282/208787982-33418fd5-ce4a-4951-96cb-1ccbeb8d5e55.png)
+![Screenshot_20221221_005213](https://user-images.githubusercontent.com/84983282/208788188-1a79e474-1906-41c5-b76b-424a7b0bf00b.png)
 
 ![Captura](https://user-images.githubusercontent.com/84983282/208455343-fd996a2b-3877-4a3d-b530-b6ffddae5e36.PNG)
 
