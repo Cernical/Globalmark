@@ -7,6 +7,18 @@ A Text-based CPU benchmark aimed to be multiplatform with every Python-compatibl
 
 # Changelog
 
+<h2>v3.1.1</h2>
+
+<b>Features</b>
+
+- Fixed the last bug where the program would not function properly once you do a stress test.
+
+<b>Bugs</b>
+
+- TBD
+
+<hr>
+
 <h2>v3.1.0</h2>
 
 <b>Features</b>
@@ -16,7 +28,7 @@ A Text-based CPU benchmark aimed to be multiplatform with every Python-compatibl
 
 <b>Bugs</b>
 
-- TBD
+- Wrong behaviour of the program once you finish a stress test.
 
 <hr>
 
