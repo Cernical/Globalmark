@@ -18,6 +18,18 @@ A Text-based CPU benchmark aimed to be multiplatform with every Python-compatibl
 
 # Changelog
 
+<h2>v3.2.2</h2>
+
+<b>Features</b>
+
+- UI improvements.
+
+<b>Bugs</b>
+
+- TBD
+
+<hr>
+
 <h2>v3.2.1</h2>
 
 <b>Features</b>
