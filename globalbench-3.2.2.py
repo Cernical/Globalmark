@@ -10,7 +10,7 @@ import subprocess  # Necesario para usar el sistema y sus funciones
 global integer
 global fp
 
-version = "3.2.1"
+version = "3.2.2"
 nucleos = "1"
 stresstest = "0"
 rangobucle = 30900900
@@ -246,7 +246,10 @@ if __name__ == '__main__':
             print("- Stress test            (2)")
         print("- Exit                   (3)")
         print()
-        respuesta = input("Choose Single-Core (0), Multi-Core (1) or Stress Test (2): ")
+        if platform.system() == "Windows":
+            respuesta = input("Choose Option: ")
+        else:
+            respuesta = input("Choose Single-Core (0), Multi-Core (1) or Stress Test (2): ")
         if platform.system() == "Windows" and respuesta == "1" or respuesta == "2":
             respuesta = "0"
         print()
