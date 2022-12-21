@@ -18,6 +18,18 @@ A Text-based CPU benchmark aimed to be multiplatform with every Python-compatibl
 
 # Changelog
 
+<h2>v3.2.3</h2>
+
+<b>Features</b>
+
+- Fixed the last bug where it is not possible to select any other mode than Single-Core.
+
+<b>Bugs</b>
+
+- TBD
+
+<hr>
+
 <h2>v3.2.2</h2>
 
 <b>Features</b>
@@ -26,7 +38,7 @@ A Text-based CPU benchmark aimed to be multiplatform with every Python-compatibl
 
 <b>Bugs</b>
 
-- TBD
+- Bug appears where it doesn't select the correct mode.
 
 <hr>
 
@@ -39,7 +51,7 @@ A Text-based CPU benchmark aimed to be multiplatform with every Python-compatibl
 
 <b>Bugs</b>
 
-- TBD
+- Bug appears where it doesn't select the correct mode.
 
 <hr>
 
