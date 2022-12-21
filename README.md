@@ -18,6 +18,19 @@ A Text-based CPU benchmark aimed to be multiplatform with every Python-compatibl
 
 # Changelog
 
+<h2>v3.2.1</h2>
+
+<b>Features</b>
+
+- Multi core operations disabled on windows systems as they are not handled correctly.
+- UI improvements.
+
+<b>Bugs</b>
+
+- TBD
+
+<hr>
+
 <h2>v3.2.0</h2>
 
 <b>Features</b>
@@ -27,7 +40,7 @@ A Text-based CPU benchmark aimed to be multiplatform with every Python-compatibl
 
 <b>Bugs</b>
 
-- TBD
+- Multi core modes on windows systems would lead to crash.
 
 <hr>
 
@@ -39,7 +52,7 @@ A Text-based CPU benchmark aimed to be multiplatform with every Python-compatibl
 
 <b>Bugs</b>
 
-- TBD
+- Multi core modes on windows systems would lead to crash.
 
 <hr>
 
@@ -53,6 +66,7 @@ A Text-based CPU benchmark aimed to be multiplatform with every Python-compatibl
 <b>Bugs</b>
 
 - Wrong behaviour of the program once you finish a stress test.
+- Multi core modes on windows systems would lead to crash.
 
 <hr>
 
@@ -65,7 +79,7 @@ A Text-based CPU benchmark aimed to be multiplatform with every Python-compatibl
 
 <b>Bugs</b>
 
-- TBD
+- Multi core modes on windows systems would lead to crash.
 
 <hr>
 
@@ -77,7 +91,7 @@ A Text-based CPU benchmark aimed to be multiplatform with every Python-compatibl
 
 <b>Bugs</b>
 
-- TBD
+- Multi core modes on windows systems would lead to crash.
 
 <hr>
 
