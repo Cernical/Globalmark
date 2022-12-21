@@ -18,6 +18,19 @@ A Text-based CPU benchmark aimed to be multiplatform with every Python-compatibl
 
 # Changelog
 
+<h2>v3.2.0</h2>
+
+<b>Features</b>
+
+- Added support for custom number of cores on the stress test (The more the number of cores introduced the more the load it would have on the system).
+- UI improvements.
+
+<b>Bugs</b>
+
+- TBD
+
+<hr>
+
 <h2>v3.1.1</h2>
 
 <b>Features</b>
