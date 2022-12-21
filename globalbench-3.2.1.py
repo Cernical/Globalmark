@@ -1,23 +1,24 @@
 #!/usr/bin/python3
 
 import time
-import platform # System info
+import platform  # System info
 import os
 import signal
 from multiprocessing import Process
-import subprocess # Necesario para usar el sistema y sus funciones
+import subprocess  # Necesario para usar el sistema y sus funciones
 
 global integer
 global fp
 
-version = "3.2.0"
+version = "3.2.1"
 nucleos = "1"
 stresstest = "0"
 rangobucle = 30900900
 
-clear = lambda: subprocess.call('cls||clear', shell=True) # Llamada al sistema
+clear = lambda: subprocess.call('cls||clear', shell=True)  # Llamada al sistema
 
-def test(stresstest,numeronucleos):
+
+def test(stresstest, numeronucleos):
     # Operaciones por proceso de ejecución------------------------------------------------------------------------------
     def op1(stresstest):
         while stresstest == "1":
@@ -36,6 +37,7 @@ def test(stresstest,numeronucleos):
 
     clear()
 
+
 def punt():
     global integer
     global fp
@@ -52,12 +54,13 @@ def punt():
     print("Integer score:", round(puntint))
     print("FP score:", round(puntfp))
 
-def algoint(nucleos,rangobucle):
+
+def algoint(nucleos, rangobucle):
     global integer
 
     # Operaciones por proceso de ejecución------------------------------------------------------------------------------
     def op1():
-        #print('process id:', os.getpid())
+        # print('process id:', os.getpid())
         for x in range(rangobucle):
             resultado = 10 * x
 
@@ -136,7 +139,8 @@ def algoint(nucleos,rangobucle):
 
     print("---",integer+"s ---")
 
-def algoflp(nucleos,rangobucle):
+
+def algoflp(nucleos, rangobucle):
     global fp
 
     # Operaciones por proceso de ejecución------------------------------------------------------------------------------
@@ -219,6 +223,7 @@ def algoflp(nucleos,rangobucle):
 
     print("---", fp + "s ---")
 
+
 if __name__ == '__main__':
     principal = 1
     while principal == 1:
@@ -230,18 +235,20 @@ if __name__ == '__main__':
             print("CPU:", "ARM")
         else:
             print("CPU:", platform.processor())
-        print("System:", platform.system())
-        print(platform.version())
+        print("System:", platform.system(), platform.version())
         print("Python:", platform.python_version())
         print("Compiler:", platform.python_compiler())
 
         print()
         print("- Single-Core Benchmark  (0)")
-        print("- Multi-Core Benchmark   (1)")
-        print("- Stress test            (2)")
+        if platform.system() != "Windows":
+            print("- Multi-Core Benchmark   (1)")
+            print("- Stress test            (2)")
         print("- Exit                   (3)")
         print()
         respuesta = input("Choose Single-Core (0), Multi-Core (1) or Stress Test (2): ")
+        if platform.system() == "Windows" and respuesta == "1" or respuesta == "2":
+            respuesta = "0"
         print()
 
         if respuesta == "0": nucleos = "0"
@@ -251,7 +258,7 @@ if __name__ == '__main__':
             print()
             numeronucleos = int(numeronucleos)
             stresstest = "1"
-            test(stresstest,numeronucleos)
+            test(stresstest, numeronucleos)
         if respuesta == "3": exit()
         if nucleos == "0": print("Single-Core benchmark:")
         if nucleos != "0": print("Multi-Core benchmark:")
@@ -266,6 +273,6 @@ if __name__ == '__main__':
             print()
             input("Press any key to continue: ")
             clear()
-            stresstest = "1" # Salida del bucle
+            stresstest = "1"  # Salida del bucle
 
-        stresstest = "0" # Reinicio variable
+        stresstest = "0"  # Reinicio variable
