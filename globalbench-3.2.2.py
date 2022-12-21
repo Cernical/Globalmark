@@ -1,83 +1,42 @@
 #!/usr/bin/python3
 
 import time
-import platform # System info
-# import os
+import platform  # System info
+import os
+import signal
 from multiprocessing import Process
-import subprocess # Necesario para usar el sistema y sus funciones
+import subprocess  # Necesario para usar el sistema y sus funciones
 
 global integer
 global fp
 
-version = "3.1.1"
+version = "3.2.2"
 nucleos = "1"
 stresstest = "0"
 rangobucle = 30900900
 
-clear = lambda: subprocess.call('cls||clear', shell=True) # Llamada al sistema
+clear = lambda: subprocess.call('cls||clear', shell=True)  # Llamada al sistema
 
-def test(stresstest):
+
+def test(stresstest, numeronucleos):
     # Operaciones por proceso de ejecución------------------------------------------------------------------------------
     def op1(stresstest):
         while stresstest == "1":
-            resultado = 10 * 10
-    def op2(stresstest):
+            resultado = 10 * 10 + 10 - 10 / 10 - 10 + 10 * 10
 
-        while stresstest == "1":
-            resultado = 10 + 10
-    def op3(stresstest):
-
-        while stresstest == "1":
-            resultado = 10 - 10
-    def op4(stresstest):
-
-        while stresstest == "1":
-            resultado = 10 * 10
-    def op5(stresstest):
-
-        while stresstest == "1":
-            resultado = 10 + 10
-    def op6(stresstest):
-
-        while stresstest == "1":
-            resultado = 10 - 10
-    def op7(stresstest):
-
-        while stresstest == "1":
-            resultado = 10 * 10 + 10 - 10
-    def op8(stresstest):
-
-        while stresstest == "1":
-            resultado = 10 - 10 + 10 * 10
-
-    p = Process(target=op1, args=stresstest)
-    p.start()
-    p2 = Process(target=op2, args=stresstest)
-    p2.start()
-    p3 = Process(target=op3, args=stresstest)
-    p3.start()
-    p4 = Process(target=op4, args=stresstest)
-    p4.start()
-    p5 = Process(target=op5, args=stresstest)
-    p5.start()
-    p6 = Process(target=op6, args=stresstest)
-    p6.start()
-    p7 = Process(target=op7, args=stresstest)
-    p7.start()
-    p8 = Process(target=op8, args=stresstest)
-    p8.start()
+    for i in range(numeronucleos):
+        p = Process(target=op1, args=stresstest)
+        p.start()
+        pid = p.pid
+        globals()[f'n{i}'] = pid
 
     input("Running test... (Enter any key to stop): ")
 
-    p.terminate()
-    p2.terminate()
-    p3.terminate()
-    p4.terminate()
-    p5.terminate()
-    p6.terminate()
-    p7.terminate()
-    p8.terminate()
+    for i in range(numeronucleos):
+        os.kill(globals()[f'n{i}'], signal.SIGTERM)
+
     clear()
+
 
 def punt():
     global integer
@@ -95,12 +54,13 @@ def punt():
     print("Integer score:", round(puntint))
     print("FP score:", round(puntfp))
 
-def algoint(nucleos,rangobucle):
+
+def algoint(nucleos, rangobucle):
     global integer
 
     # Operaciones por proceso de ejecución------------------------------------------------------------------------------
     def op1():
-        #print('process id:', os.getpid())
+        # print('process id:', os.getpid())
         for x in range(rangobucle):
             resultado = 10 * x
 
@@ -179,7 +139,8 @@ def algoint(nucleos,rangobucle):
 
     print("---",integer+"s ---")
 
-def algoflp(nucleos,rangobucle):
+
+def algoflp(nucleos, rangobucle):
     global fp
 
     # Operaciones por proceso de ejecución------------------------------------------------------------------------------
@@ -262,6 +223,7 @@ def algoflp(nucleos,rangobucle):
 
     print("---", fp + "s ---")
 
+
 if __name__ == '__main__':
     principal = 1
     while principal == 1:
@@ -273,24 +235,33 @@ if __name__ == '__main__':
             print("CPU:", "ARM")
         else:
             print("CPU:", platform.processor())
-        print("System:", platform.system())
+        print("System:", platform.system(), platform.version())
         print("Python:", platform.python_version())
         print("Compiler:", platform.python_compiler())
 
         print()
         print("- Single-Core Benchmark  (0)")
-        print("- Multi-Core Benchmark   (1)")
-        print("- Stress test            (2)")
+        if platform.system() != "Windows":
+            print("- Multi-Core Benchmark   (1)")
+            print("- Stress test            (2)")
         print("- Exit                   (3)")
         print()
-        respuesta = input("Choose Single-Core (0), Multi-Core (1) or Stress Test (2): ")
+        if platform.system() == "Windows":
+            respuesta = input("Choose Option: ")
+        else:
+            respuesta = input("Choose Single-Core (0), Multi-Core (1) or Stress Test (2): ")
+        if platform.system() == "Windows" and respuesta == "1" or respuesta == "2":
+            respuesta = "0"
         print()
 
         if respuesta == "0": nucleos = "0"
         if respuesta == "1": nucleos = "1"
         if respuesta == "2":
+            numeronucleos = input("Choose the amount of cores to test: ")
+            print()
+            numeronucleos = int(numeronucleos)
             stresstest = "1"
-            test(stresstest)
+            test(stresstest, numeronucleos)
         if respuesta == "3": exit()
         if nucleos == "0": print("Single-Core benchmark:")
         if nucleos != "0": print("Multi-Core benchmark:")
@@ -305,6 +276,6 @@ if __name__ == '__main__':
             print()
             input("Press any key to continue: ")
             clear()
-            stresstest = "1" # Salida del bucle
+            stresstest = "1"  # Salida del bucle
 
-        stresstest = "0" # Reinicio variable
+        stresstest = "0"  # Reinicio variable

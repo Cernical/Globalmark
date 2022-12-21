@@ -18,6 +18,44 @@ A Text-based CPU benchmark aimed to be multiplatform with every Python-compatibl
 
 # Changelog
 
+<h2>v3.2.2</h2>
+
+<b>Features</b>
+
+- UI improvements.
+
+<b>Bugs</b>
+
+- TBD
+
+<hr>
+
+<h2>v3.2.1</h2>
+
+<b>Features</b>
+
+- Multi core operations disabled on windows systems as they are not handled correctly.
+- UI improvements.
+
+<b>Bugs</b>
+
+- TBD
+
+<hr>
+
+<h2>v3.2.0</h2>
+
+<b>Features</b>
+
+- Added support for custom number of cores on the stress test (The more the number of cores introduced the more the load it would have on the system).
+- UI improvements.
+
+<b>Bugs</b>
+
+- Multi core modes on windows systems would lead to crash.
+
+<hr>
+
 <h2>v3.1.1</h2>
 
 <b>Features</b>
@@ -26,7 +64,7 @@ A Text-based CPU benchmark aimed to be multiplatform with every Python-compatibl
 
 <b>Bugs</b>
 
-- TBD
+- Multi core modes on windows systems would lead to crash.
 
 <hr>
 
@@ -40,6 +78,7 @@ A Text-based CPU benchmark aimed to be multiplatform with every Python-compatibl
 <b>Bugs</b>
 
 - Wrong behaviour of the program once you finish a stress test.
+- Multi core modes on windows systems would lead to crash.
 
 <hr>
 
@@ -52,7 +91,7 @@ A Text-based CPU benchmark aimed to be multiplatform with every Python-compatibl
 
 <b>Bugs</b>
 
-- TBD
+- Multi core modes on windows systems would lead to crash.
 
 <hr>
 
@@ -64,7 +103,7 @@ A Text-based CPU benchmark aimed to be multiplatform with every Python-compatibl
 
 <b>Bugs</b>
 
-- TBD
+- Multi core modes on windows systems would lead to crash.
 
 <hr>
 
