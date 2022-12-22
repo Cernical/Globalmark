@@ -13,7 +13,7 @@ global fp
 global puntint
 global puntfp
 
-version = "4.0.0"
+version = "4.0.1"
 nucleos = "1"
 stresstest = "0"
 rangobucle = 30900900
@@ -21,7 +21,7 @@ rangobucle = 30900900
 clear = lambda: subprocess.call('cls||clear', shell=True)  # Llamada al sistema
 
 
-def mangodb(usuario, modo, puntint, puntfp, modoRW):
+def mangodb(usuario, modo, puntint, puntfp, modoRW, arquitectura):
     # Dirección base de datos y credenciales
     uri = "mongodb+srv://cliente:globalbench88@globalbenchdb.morfhwo.mongodb.net/?retryWrites=true&w=majority"
     client = MongoClient(uri)   #Declaración cliente
@@ -34,7 +34,7 @@ def mangodb(usuario, modo, puntint, puntfp, modoRW):
     if modoRW == 1:
         # Introducción de datos para subir
         doc = [
-            {"User": usuario, "CPU": platform.processor(), "Mode": modo, "Integer Score": puntint, "FP Score": puntfp}
+            {"User": usuario, "CPU": arquitectura, "Mode": modo, "Integer Score": puntint, "FP Score": puntfp}
         ]
         result = coll.insert_many(doc)  # Comando de ejecución para subir datos
         # result = coll.update_many({}, doc)
@@ -44,6 +44,9 @@ def mangodb(usuario, modo, puntint, puntfp, modoRW):
     # Modo de lectura
     if modoRW == 0:
         # Mostrar datos
+        clear()
+        print("Benchmark Scores")
+        print()
         cursor = list(coll.find().sort("Integer Score", DESCENDING))
         for doc in cursor:
             print(doc)
@@ -273,9 +276,11 @@ if __name__ == '__main__':
         print()
 
         if platform.processor() == "":
-            print("CPU:", "ARM")
+            arquitectura = "ARM"
+            print("CPU:", arquitectura)
         else:
-            print("CPU:", platform.processor())
+            arquitectura = platform.processor()
+            print("CPU:", arquitectura)
         print("System:", platform.system(), platform.version())
         print("Python:", platform.python_version())
         print("Compiler:", platform.python_compiler())
@@ -305,7 +310,7 @@ if __name__ == '__main__':
             stresstest = "1"
             test(stresstest, numeronucleos)
         if respuesta == "3":
-            mangodb(0, 0, 0, 0, 0)
+            mangodb(0, 0, 0, 0, 0, 0)
             stresstest = "1"  # Para saltar el benchmark
         if respuesta == "4": exit()
         if nucleos == "0":
@@ -327,7 +332,7 @@ if __name__ == '__main__':
             if respuesta == "y" or respuesta != "Y":
                 usuario = input("Introduce your username: ")
                 print()
-                mangodb(usuario, modo, puntint, puntfp, 1)
+                mangodb(usuario, modo, puntint, puntfp, 1, arquitectura)
 
             clear()
             stresstest = "1"  # Salida del bucle
