@@ -6,6 +6,7 @@ A Text-based CPU benchmark aimed to be multiplatform with every Python-compatibl
 - Perform basic integer operations as sums, subtractions and multiplications as well as floating point.
 - Single-Core and Multi-Core modes to up to 8 cores of utilization.
 - A stress test mode.
+- Online scoreboard of tests uploaded.
 
 <hr>
 
