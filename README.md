@@ -29,7 +29,7 @@ A Text-based CPU benchmark aimed to be multiplatform with every Python-compatibl
 
 <b>Bugs</b>
 
-- The prompt to save the score will do it no matter the input.
+- TBD
 
 <hr>
 
