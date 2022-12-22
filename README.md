@@ -19,6 +19,19 @@ A Text-based CPU benchmark aimed to be multiplatform with every Python-compatibl
 
 # Changelog
 
+<h2>v4.0.1</h2>
+
+<b>Features</b>
+
+- Fixed last bug where the client won't submit the architecture type to the database.
+- UI improvements.
+
+<b>Bugs</b>
+
+- On every system that it is not x86 it would upload an empty string to the architecture data on the server.
+
+<hr>
+
 <h2>v4.0.0</h2>
 
 <b>Features</b>
@@ -27,7 +40,7 @@ A Text-based CPU benchmark aimed to be multiplatform with every Python-compatibl
 
 <b>Bugs</b>
 
-- TBD
+- On every system that it is not x86 it would upload an empty string to the architecture data on the server.
 
 <hr>
 
