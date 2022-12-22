@@ -6,16 +6,56 @@ import os
 import signal
 from multiprocessing import Process
 import subprocess  # Necesario para usar el sistema y sus funciones
+from pymongo import MongoClient, DESCENDING
 
 global integer
 global fp
+global puntint
+global puntfp
 
-version = "3.2.3"
+version = "4.0.2"
 nucleos = "1"
 stresstest = "0"
 rangobucle = 30900900
 
 clear = lambda: subprocess.call('cls||clear', shell=True)  # Llamada al sistema
+
+
+def mangodb(usuario, modo, puntint, puntfp, modoRW, arquitectura):
+    # Dirección base de datos y credenciales
+    uri = "mongodb+srv://cliente:globalbench88@globalbenchdb.morfhwo.mongodb.net/?retryWrites=true&w=majority"
+    client = MongoClient(uri)   #Declaración cliente
+
+    # Base de datos y contenido
+    db = client.GlobalbenchDB
+    coll = db.GlobalbenchColl
+
+    # Modo de escritura
+    if modoRW == 1:
+        # Introducción de datos para subir
+        doc = [
+            {"User": usuario, "CPU": arquitectura, "Mode": modo, "Integer Score": puntint, "FP Score": puntfp}
+        ]
+        result = coll.insert_many(doc)  # Comando de ejecución para subir datos
+        # result = coll.update_many({}, doc)
+
+        input("Scores uploaded. Press any key to continue: ")
+
+    # Modo de lectura
+    if modoRW == 0:
+        clear()
+        print("Benchmark Scores")
+        print()
+
+        # Mostrar datos
+        cursor = coll.find({}, {"_id": 0}).sort("Integer Score", DESCENDING)
+        for doc in cursor:
+            print(doc)
+        print()
+        input("Introduce any key to continue: ")
+
+    # Cerrar conexión
+    client.close()
 
 
 def test(stresstest, numeronucleos):
@@ -41,6 +81,8 @@ def test(stresstest, numeronucleos):
 def punt():
     global integer
     global fp
+    global puntint
+    global puntfp
 
     puntmax = 1000000
 
@@ -50,9 +92,12 @@ def punt():
     puntint = puntmax / intinteger
     puntfp = puntmax / intfp
 
+    puntint = round(puntint)
+    puntfp = round(puntfp)
+
     print()
-    print("Integer score:", round(puntint))
-    print("FP score:", round(puntfp))
+    print("Integer score:", puntint)
+    print("FP score:", puntfp)
 
 
 def algoint(nucleos, rangobucle):
@@ -232,9 +277,11 @@ if __name__ == '__main__':
         print()
 
         if platform.processor() == "":
-            print("CPU:", "ARM")
+            arquitectura = "ARM"
+            print("CPU:", arquitectura)
         else:
-            print("CPU:", platform.processor())
+            arquitectura = platform.processor()
+            print("CPU:", arquitectura)
         print("System:", platform.system(), platform.version())
         print("Python:", platform.python_version())
         print("Compiler:", platform.python_compiler())
@@ -244,12 +291,13 @@ if __name__ == '__main__':
         if platform.system() != "Windows":
             print("- Multi-Core Benchmark   (1)")
             print("- Stress test            (2)")
-        print("- Exit                   (3)")
+        print("- Scoreboard             (3)")
+        print("- Exit                   (4)")
         print()
         if platform.system() == "Windows":
             respuesta = input("Choose Option: ")
         else:
-            respuesta = input("Choose Single-Core (0), Multi-Core (1) or Stress Test (2): ")
+            respuesta = input("Choose Option: ")
         if platform.system() == "Windows" and respuesta == "1" or platform.system() == "Windows" and respuesta == "2":
             respuesta = "0"
         print()
@@ -262,9 +310,16 @@ if __name__ == '__main__':
             numeronucleos = int(numeronucleos)
             stresstest = "1"
             test(stresstest, numeronucleos)
-        if respuesta == "3": exit()
-        if nucleos == "0": print("Single-Core benchmark:")
-        if nucleos != "0": print("Multi-Core benchmark:")
+        if respuesta == "3":
+            mangodb(0, 0, 0, 0, 0, 0)
+            stresstest = "1"  # Para saltar el benchmark
+        if respuesta == "4": exit()
+        if nucleos == "0":
+            print("Single-Core benchmark:")
+            modo = "Single-Core"
+        if nucleos != "0":
+            print("Multi-Core benchmark:")
+            modo = "Multi-Core"
 
         while stresstest == "0":
             print()
@@ -274,7 +329,12 @@ if __name__ == '__main__':
             algoflp(nucleos, rangobucle)
             punt()
             print()
-            input("Press any key to continue: ")
+            respuesta = input("Do you want to submit your score? (Y/n: ")
+            if respuesta == "y" or respuesta != "Y":
+                usuario = input("Introduce your username: ")
+                print()
+                mangodb(usuario, modo, puntint, puntfp, 1, arquitectura)
+
             clear()
             stresstest = "1"  # Salida del bucle
 

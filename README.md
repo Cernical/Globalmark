@@ -6,6 +6,7 @@ A Text-based CPU benchmark aimed to be multiplatform with every Python-compatibl
 - Perform basic integer operations as sums, subtractions and multiplications as well as floating point.
 - Single-Core and Multi-Core modes to up to 8 cores of utilization.
 - A stress test mode.
+- Online scoreboard of tests uploaded.
 
 <hr>
 
@@ -17,6 +18,43 @@ A Text-based CPU benchmark aimed to be multiplatform with every Python-compatibl
 | :-----------: | :-----------: |
 
 # Changelog
+
+<h2>v4.0.2</h2>
+
+<b>Features</b>
+
+- UI improvements.
+
+<b>Bugs</b>
+
+- TBD
+
+<hr>
+
+<h2>v4.0.1</h2>
+
+<b>Features</b>
+
+- Fixed last bug where the client won't submit the architecture type to the database.
+- UI improvements.
+
+<b>Bugs</b>
+
+- TBD
+
+<hr>
+
+<h2>v4.0.0</h2>
+
+<b>Features</b>
+
+- Added integration with cloud database for score uploading!
+
+<b>Bugs</b>
+
+- On every system that it is not x86 it would upload an empty string to the architecture data on the server.
+
+<hr>
 
 <h2>v3.2.3</h2>
 
