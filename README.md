@@ -23,6 +23,7 @@ A Text-based CPU benchmark aimed to be multiplatform with every Python-compatibl
 
 <b>Features</b>
 
+- Added a legacy mode to be able to use the benchmark without having the needed libraries.
 - Fixed last bug where the prompt would keep asking for saving the score.
 - UI improvements.
 
