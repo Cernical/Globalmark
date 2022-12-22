@@ -19,6 +19,20 @@ A Text-based CPU benchmark aimed to be multiplatform with every Python-compatibl
 
 # Changelog
 
+<h2>v4.0.3</h2>
+
+<b>Features</b>
+
+- Added a legacy mode to be able to use the benchmark without having the needed libraries.
+- Fixed last bug where the prompt would keep asking for saving the score.
+- UI improvements.
+
+<b>Bugs</b>
+
+- The prompt to save the score will do it no matter the input.
+
+<hr>
+
 <h2>v4.0.2</h2>
 
 <b>Features</b>
@@ -27,7 +41,7 @@ A Text-based CPU benchmark aimed to be multiplatform with every Python-compatibl
 
 <b>Bugs</b>
 
-- TBD
+- The prompt to save the score will do it no matter the input.
 
 <hr>
 
@@ -40,7 +54,7 @@ A Text-based CPU benchmark aimed to be multiplatform with every Python-compatibl
 
 <b>Bugs</b>
 
-- TBD
+- The prompt to save the score will do it no matter the input.
 
 <hr>
 
@@ -53,6 +67,7 @@ A Text-based CPU benchmark aimed to be multiplatform with every Python-compatibl
 <b>Bugs</b>
 
 - On every system that it is not x86 it would upload an empty string to the architecture data on the server.
+- The prompt to save the score will do it no matter the input.
 
 <hr>
 

@@ -6,14 +6,23 @@ import os
 import signal
 from multiprocessing import Process
 import subprocess  # Necesario para usar el sistema y sus funciones
-from pymongo import MongoClient, DESCENDING
 
 global integer
 global fp
 global puntint
 global puntfp
+global legacy
 
-version = "4.0.2"
+try:
+    from pymongo import MongoClient, DESCENDING
+    legacy = 0
+except:
+    print("Pymongo not found, you can install it with 'pip3 install pymongo'")
+    print()
+    input("Continue without database connection: ")
+    legacy = 1
+
+version = "4.0.3"
 nucleos = "1"
 stresstest = "0"
 rangobucle = 30900900
@@ -311,8 +320,12 @@ if __name__ == '__main__':
             stresstest = "1"
             test(stresstest, numeronucleos)
         if respuesta == "3":
-            mangodb(0, 0, 0, 0, 0, 0)
-            stresstest = "1"  # Para saltar el benchmark
+            if legacy == 0:
+                mangodb(0, 0, 0, 0, 0, 0)
+                stresstest = "1"  # Para saltar el benchmark
+            else:
+                input("No database connection, please install pymongo (Press any key): ")
+                stresstest = "1"    # Para saltar el benchmark
         if respuesta == "4": exit()
         if nucleos == "0":
             print("Single-Core benchmark:")
@@ -330,7 +343,7 @@ if __name__ == '__main__':
             punt()
             print()
             respuesta = input("Do you want to submit your score? (Y/n: ")
-            if respuesta == "y" or respuesta != "Y":
+            if respuesta == "y" or respuesta == "Y":
                 usuario = input("Introduce your username: ")
                 print()
                 mangodb(usuario, modo, puntint, puntfp, 1, arquitectura)
