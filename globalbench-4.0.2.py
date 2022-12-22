@@ -13,7 +13,7 @@ global fp
 global puntint
 global puntfp
 
-version = "4.0.1"
+version = "4.0.2"
 nucleos = "1"
 stresstest = "0"
 rangobucle = 30900900
@@ -43,11 +43,12 @@ def mangodb(usuario, modo, puntint, puntfp, modoRW, arquitectura):
 
     # Modo de lectura
     if modoRW == 0:
-        # Mostrar datos
         clear()
         print("Benchmark Scores")
         print()
-        cursor = list(coll.find().sort("Integer Score", DESCENDING))
+
+        # Mostrar datos
+        cursor = coll.find({}, {"_id": 0}).sort("Integer Score", DESCENDING)
         for doc in cursor:
             print(doc)
         print()
