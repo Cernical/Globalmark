@@ -22,7 +22,7 @@ except:
     input("Continue without database connection: ")
     legacy = 1
 
-version = "4.0.3"
+version = "4.0.4"
 nucleos = "1"
 stresstest = "0"
 rangobucle = 30900900
@@ -285,11 +285,11 @@ if __name__ == '__main__':
         print("Globalbench v" + version)
         print()
 
-        if platform.processor() == "":
+        if platform.machine() == "":
             arquitectura = "ARM"
             print("CPU:", arquitectura)
         else:
-            arquitectura = platform.processor()
+            arquitectura = platform.machine()
             print("CPU:", arquitectura)
         print("System:", platform.system(), platform.version())
         print("Python:", platform.python_version())
@@ -342,7 +342,7 @@ if __name__ == '__main__':
             algoflp(nucleos, rangobucle)
             punt()
             print()
-            respuesta = input("Do you want to submit your score? (Y/n: ")
+            respuesta = input("Do you want to submit your score? (Y/n): ")
             if respuesta == "y" or respuesta == "Y":
                 usuario = input("Introduce your username: ")
                 print()
