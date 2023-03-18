@@ -19,6 +19,20 @@ A Text-based CPU benchmark aimed to be multiplatform with every Python-compatibl
 
 # Changelog
 
+<h2>v4.1.0</h2>
+
+<b>Features</b>
+
+- Renamed project from Globalbench to Globalmark.
+- GUI added (WiP).
+
+<b>Bugs</b>
+
+- On GUI mode every stress test would make the amount of threads introduced execute without ending.
+- Blank screen every time the Scoreboard is selected.
+
+<hr>
+
 <h2>v4.0.4</h2>
 
 <b>Features</b>
