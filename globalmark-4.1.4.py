@@ -48,7 +48,7 @@ except:
     UI = 0
 
 # Configuracion basica--------------------------------------------------------------------------------------------------
-version = "4.1.3"
+version = "4.1.4"
 nucleos = "1"
 rangobucle = 30900900
 stresstest = "0"
@@ -143,7 +143,6 @@ def punt():
     retornar_puntfp = str(puntfp)
 
     #return(retornar_puntint, retornar_puntfp)
-
 
 def algoint(nucleos, rangobucle):
     global integer
@@ -423,8 +422,14 @@ if __name__ == '__main__':
                     global cabecera_single
                     global pie_single
 
+                    global cabecera_single2
+                    global pie_single2
+
                     global cabecera_multi
                     global pie_multi
+
+                    global cabecera_multi2
+                    global pie_multi2
 
                     global cabecera_stress
                     global pie_stress
@@ -449,6 +454,13 @@ if __name__ == '__main__':
                         rangobucle = 30900900
 
                         def ejecutar(instance):
+                            global cabecera_single
+                            global pie_single
+                            global cabecera_single2
+                            global pie_single2
+
+                            superBox.remove_widget(cabecera_single)
+                            superBox.remove_widget(pie_single)
 
                             global single_integer
                             global single_fp
@@ -465,6 +477,59 @@ if __name__ == '__main__':
 
                             single_fp = fp
                             single_puntfp = retornar_puntfp
+
+                            # Interfaz----------------------------------------------------------------------------------
+                            # Widgets de cabecera añadidos en el plano horizontal
+                            cabecera_single2 = BoxLayout(orientation='vertical')  # Primer div
+
+                            # Crear elementos de cabecera
+                            try:
+                                consola1 = Label(text="Integer: " + single_integer + "s Score: " + single_puntint)
+                                consola2 = Label(text="FP: " + single_fp + "s Score: " + single_puntfp)
+                            except:
+                                consola1 = Label(text="Integer: " + "" + "Score: " + "")
+                                consola2 = Label(text="FP: " + "" + "Score: " + "")
+
+                            consola3 = Label(text="Singlecore Benchmark")
+                            null = Label()
+
+                            # Añadir elementos a cabecera
+                            cabecera_single2.add_widget(consola3)
+                            cabecera_single2.add_widget(null)
+                            cabecera_single2.add_widget(consola1)
+                            cabecera_single2.add_widget(consola2)
+
+                            # Widgets de pie de página añadidos en el plano vertical
+                            pie_single2 = BoxLayout(orientation='vertical')
+
+                            # Crear elementos del pie
+                            correr = Button(text="Run test", background_color=(1, 0.2, 0.2, 0.7))
+                            correr.bind(on_press=ejecutar)
+
+                            volver = Button(text="Back", background_color=(1, 0.2, 0.2, 0.7))
+                            volver.bind(on_press=callback)
+
+                            null1 = Label()
+                            null2 = Label()
+                            null3 = Label()
+                            null4 = Label()
+                            null5 = Label()
+
+                            # Añadir elementos al pie
+                            pie_single2.add_widget(null1)
+                            pie_single2.add_widget(null2)
+                            pie_single2.add_widget(null3)
+                            pie_single2.add_widget(null4)
+                            pie_single2.add_widget(correr)
+                            pie_single2.add_widget(volver)
+
+                            # Añadir cada división al layout global
+                            superBox.add_widget(cabecera_single2)
+                            superBox.add_widget(pie_single2)
+
+                            # Mostrar layout completo
+                            # return superBox
+                            # Fin Interfaz------------------------------------------------------------------------------
 
                         # Interfaz--------------------------------------------------------------------------------------
                         # Widgets de cabecera añadidos en el plano horizontal
@@ -534,6 +599,11 @@ if __name__ == '__main__':
                             global multi_fp
                             global multi_puntint
                             global multi_puntfp
+                            global cabecera_multi2
+                            global pie_multi2
+
+                            superBox.remove_widget(cabecera_multi)
+                            superBox.remove_widget(pie_multi)
 
                             # Llamada funciones
                             algoint(nucleos, rangobucle)
@@ -545,6 +615,59 @@ if __name__ == '__main__':
 
                             multi_fp = fp
                             multi_puntfp = retornar_puntfp
+
+                            # Interfaz----------------------------------------------------------------------------------
+                            # Widgets de cabecera añadidos en el plano horizontal
+                            cabecera_multi2 = BoxLayout(orientation='vertical')  # Primer div
+
+                            # Crear elementos de cabecera
+                            try:
+                                consola1 = Label(text="Integer: " + multi_integer + "s Score: " + multi_puntint)
+                                consola2 = Label(text="FP: " + multi_fp + "s Score: " + multi_puntfp)
+                            except:
+                                consola1 = Label(text="Integer: " + "" + " Score: " + "")
+                                consola2 = Label(text="FP: " + "" + " Score: " + "")
+
+                            consola3 = Label(text="Multicore Benchmark")
+                            null = Label()
+
+                            # Añadir elementos a cabecera
+                            cabecera_multi2.add_widget(consola3)
+                            cabecera_multi2.add_widget(null)
+                            cabecera_multi2.add_widget(consola1)
+                            cabecera_multi2.add_widget(consola2)
+
+                            # Widgets de pie de página añadidos en el plano vertical
+                            pie_multi2 = BoxLayout(orientation='vertical')
+
+                            # Crear elementos del pie
+                            correr = Button(text="Run test", background_color=(1, 0.2, 0.2, 0.7))
+                            correr.bind(on_press=ejecutar)
+
+                            volver = Button(text="Back", background_color=(1, 0.2, 0.2, 0.7))
+                            volver.bind(on_press=callback)
+
+                            null1 = Label()
+                            null2 = Label()
+                            null3 = Label()
+                            null4 = Label()
+                            null5 = Label()
+
+                            # Añadir elementos al pie
+                            pie_multi2.add_widget(null1)
+                            pie_multi2.add_widget(null2)
+                            pie_multi2.add_widget(null3)
+                            pie_multi2.add_widget(null4)
+                            pie_multi2.add_widget(correr)
+                            pie_multi2.add_widget(volver)
+
+                            # Añadir cada división al layout global
+                            superBox.add_widget(cabecera_multi2)
+                            superBox.add_widget(pie_multi2)
+
+                            # Mostrar layout completo
+                            # return superBox
+                            # Fin Interfaz------------------------------------------------------------------------------
 
                         # Interfaz--------------------------------------------------------------------------------------
                         # Widgets de cabecera añadidos en el plano horizontal
@@ -740,6 +863,8 @@ if __name__ == '__main__':
                         if control_back == "single":
                             superBox.remove_widget(pie_single)
                             superBox.remove_widget(cabecera_single)
+                            superBox.remove_widget(pie_single2)
+                            superBox.remove_widget(cabecera_single2)
 
                             superBox.add_widget(cabecera)
                             superBox.add_widget(pie)
@@ -747,6 +872,8 @@ if __name__ == '__main__':
                         if control_back == "multi":
                             superBox.remove_widget(pie_multi)
                             superBox.remove_widget(cabecera_multi)
+                            superBox.remove_widget(pie_multi2)
+                            superBox.remove_widget(cabecera_multi2)
 
                             superBox.add_widget(cabecera)
                             superBox.add_widget(pie)
