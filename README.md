@@ -19,6 +19,20 @@ A Text-based CPU benchmark aimed to be multiplatform with every Python-compatibl
 
 # Changelog
 
+<h2>v4.1.1</h2>
+
+<b>Features</b>
+
+- GUI improvements
+- Fixed blank scoreboard screen and disabled due to WiP.
+
+<b>Bugs</b>
+
+- On GUI mode every stress test would make the amount of threads introduced execute without ending.
+- Blank screen every time the Scoreboard is selected.
+
+<hr>
+
 <h2>v4.1.0</h2>
 
 <b>Features</b>
