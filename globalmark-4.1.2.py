@@ -48,7 +48,7 @@ except:
     UI = 0
 
 # Configuracion basica--------------------------------------------------------------------------------------------------
-version = "4.1.1"
+version = "4.1.2"
 nucleos = "1"
 rangobucle = 30900900
 stresstest = "0"
@@ -109,17 +109,12 @@ def test(stresstest, numeronucleos):
         pid = p.pid
         globals()[f'n{i}'] = pid
 
-        # debug
-        print(p)
-        print(globals()[f'n{i}'])
-
     if modo_gui == 0:
         input("Running test... (Enter any key to stop): ")
-
         for i in range(numeronucleos):
             os.kill(globals()[f'n{i}'], signal.SIGTERM)
 
-        clear()
+    clear()
 
 def punt():
     global integer
@@ -562,7 +557,6 @@ if __name__ == '__main__':
                         superBox.remove_widget(pie)
 
                         control_back = "stress"
-
                         stresstest = "1"
 
                         # Funcion que registra contenido del input------------------------------------------------------
@@ -581,7 +575,6 @@ if __name__ == '__main__':
                         def callback_stress(instance):
 
                             global resultadoAintroducir
-
                             global cabecera_stress2
                             global pie_stress2
 
@@ -591,7 +584,7 @@ if __name__ == '__main__':
                             superBox.remove_widget(cabecera_stress)
                             superBox.remove_widget(pie_stress)
 
-                            test(stresstest, resultadoAintroducir)
+                            test(stresstest,resultadoAintroducir)
 
                             # Interfaz----------------------------------------------------------------------------------
                             # Widgets de cabecera añadidos en el plano horizontal
@@ -653,8 +646,11 @@ if __name__ == '__main__':
                         pie_stress = BoxLayout(orientation='vertical')
 
                         # Crear elementos del pie
+                        correr_stress = Button(text="Run test", background_color=(1, 0.2, 0.2, 0.7))
+                        correr_stress.bind(on_press=callback_stress)
+
                         volver = Button(text="Back", background_color=(1, 0.2, 0.2, 0.7))
-                        volver.bind(on_press=callback_stress)
+                        volver.bind(on_press=callback)
 
                         null1 = Label()
                         null2 = Label()
@@ -667,7 +663,7 @@ if __name__ == '__main__':
                         pie_stress.add_widget(null2)
                         pie_stress.add_widget(null3)
                         pie_stress.add_widget(null4)
-                        pie_stress.add_widget(null5)
+                        pie_stress.add_widget(correr_stress)
                         pie_stress.add_widget(volver)
 
                         # Añadir cada división al layout global
@@ -708,13 +704,14 @@ if __name__ == '__main__':
                             superBox.add_widget(pie)
 
                         if control_back == "stress":
-                            global resultadoAintroducir
-                            for i in range(resultadoAintroducir):
-                                print(globals()[f'n{i}'])
-                                os.kill(globals()[f'n{i}'], signal.SIGTERM)
-
-                            superBox.remove_widget(pie_stress2)
-                            superBox.remove_widget(cabecera_stress2)
+                            try:
+                                superBox.remove_widget(pie_stress2)
+                                superBox.remove_widget(cabecera_stress2)
+                                for i in range(resultadoAintroducir):
+                                    os.kill(globals()[f'n{i}'], signal.SIGKILL)
+                            except:
+                                superBox.remove_widget(pie_stress)
+                                superBox.remove_widget(cabecera_stress)
 
                             superBox.add_widget(cabecera)
                             superBox.add_widget(pie)
