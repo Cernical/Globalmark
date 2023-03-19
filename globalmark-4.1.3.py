@@ -48,7 +48,7 @@ except:
     UI = 0
 
 # Configuracion basica--------------------------------------------------------------------------------------------------
-version = "4.1.2"
+version = "4.1.3"
 nucleos = "1"
 rangobucle = 30900900
 stresstest = "0"
@@ -434,6 +434,11 @@ if __name__ == '__main__':
 
                     global control_back
 
+                    global single_integer
+                    global single_fp
+                    global single_puntint
+                    global single_puntfp
+
                     if Seleccion == "Single-Core Benchmark":
                         superBox.remove_widget(cabecera)
                         superBox.remove_widget(pie)
@@ -444,10 +449,22 @@ if __name__ == '__main__':
                         rangobucle = 30900900
 
                         def ejecutar(instance):
+
+                            global single_integer
+                            global single_fp
+                            global single_puntint
+                            global single_puntfp
+
                             # Llamada funciones
                             algoint(nucleos, rangobucle)
                             algoflp(nucleos, rangobucle)
                             punt()
+
+                            single_integer = integer
+                            single_puntint = retornar_puntint
+
+                            single_fp = fp
+                            single_puntfp = retornar_puntfp
 
                         # Interfaz--------------------------------------------------------------------------------------
                         # Widgets de cabecera añadidos en el plano horizontal
@@ -455,13 +472,18 @@ if __name__ == '__main__':
 
                         # Crear elementos de cabecera
                         try:
-                            consola1 = Label(text="Integer: " + integer + "s Score: " + retornar_puntint)
-                            consola2 = Label(text="FP: " + fp + "s Score: " + retornar_puntfp)
+                            consola1 = Label(text="Integer: " + single_integer + "s Score: " + single_puntint)
+                            consola2 = Label(text="FP: " + single_fp + "s Score: " + single_puntfp)
                         except:
                             consola1 = Label(text="Integer: " + "" + "Score: " + "")
                             consola2 = Label(text="FP: " + "" + "Score: " + "")
 
+                        consola3 = Label(text="Singlecore Benchmark")
+                        null = Label()
+
                         # Añadir elementos a cabecera
+                        cabecera_single.add_widget(consola3)
+                        cabecera_single.add_widget(null)
                         cabecera_single.add_widget(consola1)
                         cabecera_single.add_widget(consola2)
 
@@ -506,20 +528,42 @@ if __name__ == '__main__':
                         nucleos = "1"
                         rangobucle = 30900900
 
-                        # Llamada funciones
-                        algoint(nucleos, rangobucle)
-                        algoflp(nucleos, rangobucle)
-                        punt()
+                        def ejecutar(instance):
+
+                            global multi_integer
+                            global multi_fp
+                            global multi_puntint
+                            global multi_puntfp
+
+                            # Llamada funciones
+                            algoint(nucleos, rangobucle)
+                            algoflp(nucleos, rangobucle)
+                            punt()
+
+                            multi_integer = integer
+                            multi_puntint = retornar_puntint
+
+                            multi_fp = fp
+                            multi_puntfp = retornar_puntfp
 
                         # Interfaz--------------------------------------------------------------------------------------
                         # Widgets de cabecera añadidos en el plano horizontal
                         cabecera_multi = BoxLayout(orientation='vertical')  # Primer div
 
                         # Crear elementos de cabecera
-                        consola1 = Label(text="Integer: " + integer + "s Score: " + retornar_puntint)
-                        consola2 = Label(text="FP: " + fp + "s Score: " + retornar_puntfp)
+                        try:
+                            consola1 = Label(text="Integer: " + multi_integer + "s Score: " + multi_puntint)
+                            consola2 = Label(text="FP: " + multi_fp + "s Score: " + multi_puntfp)
+                        except:
+                            consola1 = Label(text="Integer: " + "" + " Score: " + "")
+                            consola2 = Label(text="FP: " + "" + " Score: " + "")
+
+                        consola3 = Label(text="Multicore Benchmark")
+                        null = Label()
 
                         # Añadir elementos a cabecera
+                        cabecera_multi.add_widget(consola3)
+                        cabecera_multi.add_widget(null)
                         cabecera_multi.add_widget(consola1)
                         cabecera_multi.add_widget(consola2)
 
@@ -527,6 +571,9 @@ if __name__ == '__main__':
                         pie_multi = BoxLayout(orientation='vertical')
 
                         # Crear elementos del pie
+                        correr = Button(text="Run test", background_color=(1, 0.2, 0.2, 0.7))
+                        correr.bind(on_press=ejecutar)
+
                         volver = Button(text="Back", background_color=(1, 0.2, 0.2, 0.7))
                         volver.bind(on_press=callback)
 
@@ -541,7 +588,7 @@ if __name__ == '__main__':
                         pie_multi.add_widget(null2)
                         pie_multi.add_widget(null3)
                         pie_multi.add_widget(null4)
-                        pie_multi.add_widget(null5)
+                        pie_multi.add_widget(correr)
                         pie_multi.add_widget(volver)
 
                         # Añadir cada división al layout global
@@ -591,7 +638,8 @@ if __name__ == '__main__':
                             cabecera_stress2 = BoxLayout(orientation='vertical')  # Primer div
 
                             # Crear elementos de cabecera
-                            textinput = Label(text="Running stresstest")
+                            numero_nucleos = str(resultadoAintroducir)
+                            textinput = Label(text="Running stresstest with " + numero_nucleos + " cores")
 
                             # Añadir elementos a cabecera
                             cabecera_stress2.add_widget(textinput)
@@ -741,8 +789,11 @@ if __name__ == '__main__':
                         consola4 = Label(text="Python: " + platform.python_version())
                         consola5 = Label(text="Compiler: " + platform.python_compiler())
 
+                        null = Label()
+
                         # Añadir elementos a cabecera
                         cabecera_info.add_widget(consola1)
+                        cabecera_info.add_widget(null)
                         cabecera_info.add_widget(consola2)
                         cabecera_info.add_widget(consola3)
                         cabecera_info.add_widget(consola4)
@@ -776,10 +827,9 @@ if __name__ == '__main__':
                         # Mostrar layout completo
                         #return superBox
                         # Fin Interfaz----------------------------------------------------------------------------------
-
                 # ------------------------------------------------------------------------------------------------------
 
-                # Interfaz----------------------------------------------------------------------------------------------
+                # Interfaz principal------------------------------------------------------------------------------------
                 # Layout global de superBox cada widget dispuestos uno encima de otro-----------------------------------
                 superBox = BoxLayout(orientation='vertical')
 
