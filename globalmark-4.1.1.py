@@ -47,11 +47,12 @@ except:
     input("Press enter key to continue: ")
     UI = 0
 
-# Configuracion basica
-version = "4.1.0"
+# Configuracion basica--------------------------------------------------------------------------------------------------
+version = "4.1.1"
 nucleos = "1"
-stresstest = "0"
 rangobucle = 30900900
+stresstest = "0"
+# ----------------------------------------------------------------------------------------------------------------------
 
 clear = lambda: subprocess.call('cls||clear', shell=True)  # Llamada al sistema
 
@@ -94,8 +95,10 @@ def mangodb(usuario, modo, puntint, puntfp, modoRW, arquitectura):
 
 
 def test(stresstest, numeronucleos):
-    # Operaciones por proceso de ejecución------------------------------------------------------------------------------
 
+    global modo_gui
+
+    # Operaciones por proceso de ejecución------------------------------------------------------------------------------
     def op1(stresstest):
         while stresstest == "1":
             resultado = 10 * 10 + 10 - 10 / 10 - 10 + 10 * 10
@@ -106,7 +109,9 @@ def test(stresstest, numeronucleos):
         pid = p.pid
         globals()[f'n{i}'] = pid
 
-    global modo_gui
+        # debug
+        print(p)
+        print(globals()[f'n{i}'])
 
     if modo_gui == 0:
         input("Running test... (Enter any key to stop): ")
@@ -142,7 +147,7 @@ def punt():
     retornar_puntint = str(puntint)
     retornar_puntfp = str(puntfp)
 
-    return(retornar_puntint, retornar_puntfp)
+    #return(retornar_puntint, retornar_puntfp)
 
 
 def algoint(nucleos, rangobucle):
@@ -228,7 +233,7 @@ def algoint(nucleos, rangobucle):
     stop_time = time.time()
 
     print("---",integer+"s ---")
-    return(integer)
+    #return(integer)
 
 def algoflp(nucleos, rangobucle):
     global fp
@@ -312,7 +317,7 @@ def algoflp(nucleos, rangobucle):
     stop_time = time.time()
 
     print("---", fp + "s ---")
-    return(fp)
+    #return(fp)
 
 if __name__ == '__main__':
     if UI == 0:
@@ -399,8 +404,12 @@ if __name__ == '__main__':
                 global superBox
                 global cabecera
                 global pie
+
                 global modo_gui
                 modo_gui = 1
+
+                global resultadoAintroducir
+                resultadoAintroducir = 0
 
                 # Función que detecta el texto del botón seleccionado en pantalla---------------------------------------
                 def callback(instance):
@@ -439,18 +448,23 @@ if __name__ == '__main__':
                         nucleos = "0"
                         rangobucle = 30900900
 
-                        #Llamada funciones
-                        algoint(nucleos, rangobucle)
-                        algoflp(nucleos, rangobucle)
-                        punt()
+                        def ejecutar(instance):
+                            # Llamada funciones
+                            algoint(nucleos, rangobucle)
+                            algoflp(nucleos, rangobucle)
+                            punt()
 
                         # Interfaz--------------------------------------------------------------------------------------
                         # Widgets de cabecera añadidos en el plano horizontal
                         cabecera_single = BoxLayout(orientation='vertical')  # Primer div
 
                         # Crear elementos de cabecera
-                        consola1 = Label(text="Integer: " + integer + "s Score: " + retornar_puntint)
-                        consola2 = Label(text="FP: " + fp + "s Score: " + retornar_puntfp)
+                        try:
+                            consola1 = Label(text="Integer: " + integer + "s Score: " + retornar_puntint)
+                            consola2 = Label(text="FP: " + fp + "s Score: " + retornar_puntfp)
+                        except:
+                            consola1 = Label(text="Integer: " + "" + "Score: " + "")
+                            consola2 = Label(text="FP: " + "" + "Score: " + "")
 
                         # Añadir elementos a cabecera
                         cabecera_single.add_widget(consola1)
@@ -460,6 +474,9 @@ if __name__ == '__main__':
                         pie_single = BoxLayout(orientation='vertical')
 
                         # Crear elementos del pie
+                        correr = Button(text="Run test", background_color=(1, 0.2, 0.2, 0.7))
+                        correr.bind(on_press=ejecutar)
+
                         volver = Button(text="Back", background_color=(1, 0.2, 0.2, 0.7))
                         volver.bind(on_press=callback)
 
@@ -474,7 +491,7 @@ if __name__ == '__main__':
                         pie_single.add_widget(null2)
                         pie_single.add_widget(null3)
                         pie_single.add_widget(null4)
-                        pie_single.add_widget(null5)
+                        pie_single.add_widget(correr)
                         pie_single.add_widget(volver)
 
                         # Añadir cada división al layout global
@@ -552,10 +569,14 @@ if __name__ == '__main__':
                         def on_text(instance, value):
 
                             global resultadoAintroducir
+
                             print('The widget', instance, 'have:', value)
 
-                            resultadoAintroducir = value
-                            resultadoAintroducir = int(resultadoAintroducir)
+                            try:
+                                resultadoAintroducir = value
+                                resultadoAintroducir = int(resultadoAintroducir)
+                            except:
+                                resultadoAintroducir = 0
 
                         def callback_stress(instance):
 
@@ -577,7 +598,7 @@ if __name__ == '__main__':
                             cabecera_stress2 = BoxLayout(orientation='vertical')  # Primer div
 
                             # Crear elementos de cabecera
-                            textinput = Label(text="Test")
+                            textinput = Label(text="Running stresstest")
 
                             # Añadir elementos a cabecera
                             cabecera_stress2.add_widget(textinput)
@@ -610,7 +631,6 @@ if __name__ == '__main__':
                             # Mostrar layout completo
                             # return superBox
                             # Fin Interfaz------------------------------------------------------------------------------
-
                         # ----------------------------------------------------------------------------------------------
 
                         # Interfaz--------------------------------------------------------------------------------------
@@ -621,8 +641,13 @@ if __name__ == '__main__':
                         textinput = TextInput()
                         textinput.bind(text=on_text)
 
+                        titulo = Label(text="Introduce number of cores/threads")
+                        null2 = Label()
+
                         # Añadir elementos a cabecera
+                        cabecera_stress.add_widget(titulo)
                         cabecera_stress.add_widget(textinput)
+                        cabecera_stress.add_widget(null2)
 
                         # Widgets de pie de página añadidos en el plano vertical
                         pie_stress = BoxLayout(orientation='vertical')
@@ -654,10 +679,11 @@ if __name__ == '__main__':
                         # Fin Interfaz----------------------------------------------------------------------------------
 
                     if Seleccion == "Scoreboard":
-                        superBox.remove_widget(cabecera)
-                        superBox.remove_widget(pie)
+                        #superBox.remove_widget(cabecera)
+                        #superBox.remove_widget(pie)
 
-                        control_back = "score"
+                        #control_back = "score"
+                        print()
 
                     if Seleccion == "Back":
                         if control_back == "info":
@@ -682,6 +708,11 @@ if __name__ == '__main__':
                             superBox.add_widget(pie)
 
                         if control_back == "stress":
+                            global resultadoAintroducir
+                            for i in range(resultadoAintroducir):
+                                print(globals()[f'n{i}'])
+                                os.kill(globals()[f'n{i}'], signal.SIGTERM)
+
                             superBox.remove_widget(pie_stress2)
                             superBox.remove_widget(cabecera_stress2)
 
@@ -777,7 +808,7 @@ if __name__ == '__main__':
                 stress = Button(text="Stress test", background_color=(1, 0.2, 0.2, 0.7))
                 stress.bind(on_press=callback)
 
-                score = Button(text="Scoreboard", background_color=(1, 0.2, 0.2, 0.7))
+                score = Button(text="Scoreboard", background_color=(1, 0.2, 0.2, 0.3))
                 score.bind(on_press=callback)
 
                 info = Button(text="Info", background_color=(1, 0.2, 0.2, 0.7))
