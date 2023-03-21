@@ -21,6 +21,19 @@ A Text-based CPU benchmark aimed to be multiplatform with every Python-compatibl
 
 # Changelog
 
+<h2>v4.1.7</h2>
+
+<b>Features</b>
+
+- GUI improvements.
+- Added argument for CMD only mode.
+
+<b>Bugs</b>
+
+- TBD
+
+<hr>
+
 <h2>v4.1.6</h2>
 
 <b>Features</b>
