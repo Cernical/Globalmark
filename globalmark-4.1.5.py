@@ -48,14 +48,13 @@ except:
     UI = 0
 
 # Configuracion basica--------------------------------------------------------------------------------------------------
-version = "4.1.4"
+version = "4.1.5"
 nucleos = "1"
 rangobucle = 30900900
 stresstest = "0"
 # ----------------------------------------------------------------------------------------------------------------------
 
 clear = lambda: subprocess.call('cls||clear', shell=True)  # Llamada al sistema
-
 
 def mangodb(usuario, modo, puntint, puntfp, modoRW, arquitectura):
     # Dirección base de datos y credenciales
@@ -92,7 +91,6 @@ def mangodb(usuario, modo, puntint, puntfp, modoRW, arquitectura):
 
     # Cerrar conexión
     client.close()
-
 
 def test(stresstest, numeronucleos):
 
@@ -861,19 +859,29 @@ if __name__ == '__main__':
                             superBox.add_widget(pie)
 
                         if control_back == "single":
-                            superBox.remove_widget(pie_single)
-                            superBox.remove_widget(cabecera_single)
-                            superBox.remove_widget(pie_single2)
-                            superBox.remove_widget(cabecera_single2)
+                            try:
+                                superBox.remove_widget(pie_single2)
+                                superBox.remove_widget(cabecera_single2)
+                            except:
+                                superBox.remove_widget(pie_single)
+                                superBox.remove_widget(cabecera_single)
+                            else:
+                                superBox.remove_widget(pie_single)
+                                superBox.remove_widget(cabecera_single)
 
                             superBox.add_widget(cabecera)
                             superBox.add_widget(pie)
 
                         if control_back == "multi":
-                            superBox.remove_widget(pie_multi)
-                            superBox.remove_widget(cabecera_multi)
-                            superBox.remove_widget(pie_multi2)
-                            superBox.remove_widget(cabecera_multi2)
+                            try:
+                                superBox.remove_widget(pie_multi2)
+                                superBox.remove_widget(cabecera_multi2)
+                            except:
+                                superBox.remove_widget(pie_multi)
+                                superBox.remove_widget(cabecera_multi)
+                            else:
+                                superBox.remove_widget(pie_multi)
+                                superBox.remove_widget(cabecera_multi)
 
                             superBox.add_widget(cabecera)
                             superBox.add_widget(pie)
