@@ -10,7 +10,7 @@ A Text-based CPU benchmark aimed to be multiplatform with every Python-compatibl
 
 <b>Usage</b>
 
-By default it would launch with kivy framework graphics unless specified with the nogui argument on the CMD.
+By default it would launch with Kivy framework graphics unless specified with the nogui argument on the CMD.
 
 Example: ~./main.py nogui
 
