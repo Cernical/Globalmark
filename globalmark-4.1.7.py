@@ -5,8 +5,11 @@ import time
 import platform  # System info
 import os
 import signal
+import sys
 from multiprocessing import Process
+
 import subprocess  # Necesario para usar el sistema y sus funciones
+clear = lambda: subprocess.call('cls||clear', shell=True)  # Llamada al sistema
 # ----------------------------------------------------------------------------------------------------------------------
 
 global integer
@@ -14,6 +17,7 @@ global fp
 global puntint
 global puntfp
 global legacy
+global UI
 
 # Importacion Pymongo---------------------------------------------------------------------------------------------------
 try:
@@ -47,14 +51,20 @@ except:
     input("Press enter key to continue: ")
     UI = 0
 
+#System Inputs----------------------------------------------------------------------------------------------------------
+try:
+    if sys.argv[1] == "nogui":
+        UI = 0
+        clear()
+except:
+    print("No arguments given")
+
 # Configuracion basica--------------------------------------------------------------------------------------------------
-version = "4.1.6"
+version = "4.1.7"
 nucleos = "1"
 rangobucle = 30900900
 stresstest = "0"
 # ----------------------------------------------------------------------------------------------------------------------
-
-clear = lambda: subprocess.call('cls||clear', shell=True)  # Llamada al sistema
 
 def mangodb(usuario, modo, puntint, puntfp, modoRW, arquitectura):
     # Dirección base de datos y credenciales
@@ -94,7 +104,7 @@ def mangodb(usuario, modo, puntint, puntfp, modoRW, arquitectura):
 
 def test(stresstest, numeronucleos):
 
-    global modo_gui
+    global UI
 
     # Operaciones por proceso de ejecución------------------------------------------------------------------------------
     def op1(stresstest):
@@ -107,7 +117,7 @@ def test(stresstest, numeronucleos):
         pid = p.pid
         globals()[f'n{i}'] = pid
 
-    if modo_gui == 0:
+    if UI == 0:
         input("Running test... (Enter any key to stop): ")
         for i in range(numeronucleos):
             os.kill(globals()[f'n{i}'], signal.SIGTERM)
@@ -313,9 +323,6 @@ def algoflp(nucleos, rangobucle):
 
 if __name__ == '__main__':
     if UI == 0:
-        global modo_gui
-        modo_gui = 0
-
         principal = 1
         while principal == 1:
             clear()
@@ -923,7 +930,7 @@ if __name__ == '__main__':
                             arquitectura = platform.machine()
                             consola2 = Label(text="CPU: " + arquitectura)
 
-                        consola3 = Label(text="System: " + platform.system() + platform.version())
+                        consola3 = Label(text="System: " + platform.system())
                         consola4 = Label(text="Python: " + platform.python_version())
                         consola5 = Label(text="Compiler: " + platform.python_compiler())
 
