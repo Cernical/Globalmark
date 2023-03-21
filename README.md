@@ -21,6 +21,18 @@ A Text-based CPU benchmark aimed to be multiplatform with every Python-compatibl
 
 # Changelog
 
+<h2>v4.1.6</h2>
+
+<b>Features</b>
+
+- Fixed last GUI bug after doing stress test.
+
+<b>Bugs</b>
+
+- TBD
+
+<hr>
+
 <h2>v4.1.5</h2>
 
 <b>Features</b>
@@ -29,7 +41,7 @@ A Text-based CPU benchmark aimed to be multiplatform with every Python-compatibl
 
 <b>Bugs</b>
 
-- TBD
+- GUI bug after running stress test.
 
 <hr>
 
@@ -42,6 +54,7 @@ A Text-based CPU benchmark aimed to be multiplatform with every Python-compatibl
 <b>Bugs</b>
 
 - Bug where the app would crash when opening and closing the single and multicore benchmark without running the test.
+- GUI bug after running stress test.
 
 <hr>
 

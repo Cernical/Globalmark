@@ -48,7 +48,7 @@ except:
     UI = 0
 
 # Configuracion basica--------------------------------------------------------------------------------------------------
-version = "4.1.5"
+version = "4.1.6"
 nucleos = "1"
 rangobucle = 30900900
 stresstest = "0"
@@ -893,6 +893,9 @@ if __name__ == '__main__':
                                 for i in range(resultadoAintroducir):
                                     os.kill(globals()[f'n{i}'], signal.SIGKILL)
                             except:
+                                superBox.remove_widget(pie_stress)
+                                superBox.remove_widget(cabecera_stress)
+                            else:
                                 superBox.remove_widget(pie_stress)
                                 superBox.remove_widget(cabecera_stress)
 
