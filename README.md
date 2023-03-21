@@ -19,6 +19,82 @@ A Text-based CPU benchmark aimed to be multiplatform with every Python-compatibl
 
 # Changelog
 
+<h2>v4.1.5</h2>
+
+<b>Features</b>
+
+- Fixed a bug where the app would crash when opening and closing the single and multicore benchmark without running the test.
+
+<b>Bugs</b>
+
+- TBD
+
+<hr>
+
+<h2>v4.1.4</h2>
+
+<b>Features</b>
+
+- GUI improvements.
+
+<b>Bugs</b>
+
+- Bug where the app would crash when opening and closing the single and multicore benchmark without running the test.
+
+<hr>
+
+<h2>v4.1.3</h2>
+
+<b>Features</b>
+
+- GUI improvements.
+
+<b>Bugs</b>
+
+- TBD
+
+<hr>
+
+<h2>v4.1.2</h2>
+
+<b>Features</b>
+
+- GUI improvements.
+- Fixed last bug on stress test mode where threads would not end.
+
+<b>Bugs</b>
+
+- TBD
+
+<hr>
+
+<h2>v4.1.1</h2>
+
+<b>Features</b>
+
+- GUI improvements.
+- Fixed blank scoreboard screen and disabled due to WiP.
+
+<b>Bugs</b>
+
+- On GUI mode every stress test would make the amount of threads introduced execute without ending.
+
+<hr>
+
+<h2>v4.1.0</h2>
+
+<b>Features</b>
+
+- Renamed project from Globalbench to Globalmark.
+- GUI added (WiP).
+
+<b>Bugs</b>
+
+- On GUI mode every stress test would make the amount of threads introduced execute without ending.
+- Blank screen every time the Scoreboard is selected.
+
+<hr>
+
 <h2>v4.0.4</h2>
 
 <b>Features</b>
