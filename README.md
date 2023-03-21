@@ -8,6 +8,12 @@ A Text-based CPU benchmark aimed to be multiplatform with every Python-compatibl
 - A stress test mode.
 - Online scoreboard of tests uploaded.
 
+<b>Usage</b>
+
+By default it would launch with kivy framework graphics unless specified with the nogui argument on the CMD.
+
+Example: ~./main.py nogui
+
 <hr>
 
 ![Captura desde 2023-03-21 12-02-44](https://user-images.githubusercontent.com/84983282/226587688-89725754-e0a8-49ff-a682-df492b26ea26.png)
