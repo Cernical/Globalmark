@@ -19,6 +19,18 @@ A Text-based CPU benchmark aimed to be multiplatform with every Python-compatibl
 
 # Changelog
 
+<h2>v4.1.5</h2>
+
+<b>Features</b>
+
+- Fixed a bug where the app would crash when opening and closing the single and multicore benchmark without running the test.
+
+<b>Bugs</b>
+
+- TBD
+
+<hr>
+
 <h2>v4.1.4</h2>
 
 <b>Features</b>
@@ -27,7 +39,7 @@ A Text-based CPU benchmark aimed to be multiplatform with every Python-compatibl
 
 <b>Bugs</b>
 
-- TBD
+- Bug where the app would crash when opening and closing the single and multicore benchmark without running the test.
 
 <hr>
 
