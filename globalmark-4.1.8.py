@@ -60,7 +60,7 @@ except:
     print("No arguments given")
 
 # Configuracion basica--------------------------------------------------------------------------------------------------
-version = "4.1.7"
+version = "4.1.8"
 nucleos = "1"
 rangobucle = 30900900
 stresstest = "0"
@@ -134,8 +134,8 @@ def punt():
 
     puntmax = 1000000
 
-    intinteger = float(integer)
-    intfp = float(fp)
+    intinteger = integer
+    intfp = fp
 
     puntint = puntmax / intinteger
     puntfp = puntmax / intfp
@@ -231,11 +231,12 @@ def algoint(nucleos, rangobucle):
         p8.join()
 
     # Fin operaciones---------------------------------------------------------------------------------------------------
-    integer = ("%s" % (time.time() - start_time))
+    integer = time.time() - start_time
     stop_time = time.time()
 
-    print("---",integer+"s ---")
-    #return(integer)
+    global integer_redondeado
+    integer_redondeado = round(integer, 2)
+    print("---", integer_redondeado, "seconds ---")
 
 def algoflp(nucleos, rangobucle):
     global fp
@@ -315,11 +316,12 @@ def algoflp(nucleos, rangobucle):
         p8.join()
 
     # Fin operaciones---------------------------------------------------------------------------------------------------
-    fp = ("%s" % (time.time() - start_time))
+    fp = time.time() - start_time
     stop_time = time.time()
 
-    print("---", fp + "s ---")
-    #return(fp)
+    global fp_redondeado
+    fp_redondeado = round(fp, 2)
+    print("---", fp_redondeado, "seconds ---")
 
 if __name__ == '__main__':
     if UI == 0:
@@ -471,16 +473,20 @@ if __name__ == '__main__':
                             global single_fp
                             global single_puntint
                             global single_puntfp
+                            global integer_redondeado
+                            global fp_redondeado
 
                             # Llamada funciones
                             algoint(nucleos, rangobucle)
                             algoflp(nucleos, rangobucle)
                             punt()
 
-                            single_integer = integer
+                            single_integer = integer_redondeado
+                            single_integer = str(single_integer)
                             single_puntint = retornar_puntint
 
-                            single_fp = fp
+                            single_fp = fp_redondeado
+                            single_fp = str(single_fp)
                             single_puntfp = retornar_puntfp
 
                             # Interfaz----------------------------------------------------------------------------------
@@ -606,6 +612,8 @@ if __name__ == '__main__':
                             global multi_puntfp
                             global cabecera_multi2
                             global pie_multi2
+                            global integer_redondeado
+                            global fp_redondeado
 
                             superBox.remove_widget(cabecera_multi)
                             superBox.remove_widget(pie_multi)
@@ -615,10 +623,12 @@ if __name__ == '__main__':
                             algoflp(nucleos, rangobucle)
                             punt()
 
-                            multi_integer = integer
+                            multi_integer = integer_redondeado
+                            multi_integer = str(multi_integer)
                             multi_puntint = retornar_puntint
 
-                            multi_fp = fp
+                            multi_fp = fp_redondeado
+                            multi_fp = str(multi_fp)
                             multi_puntfp = retornar_puntfp
 
                             # Interfaz----------------------------------------------------------------------------------
