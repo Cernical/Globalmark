@@ -27,6 +27,18 @@ Example: ~./main.py nogui
 
 # Changelog
 
+<h2>v4.1.8</h2>
+
+<b>Features</b>
+
+- Rounded the amount of time presented for the tests.
+
+<b>Bugs</b>
+
+- TBD
+
+<hr>
+
 <h2>v4.1.7</h2>
 
 <b>Features</b>
