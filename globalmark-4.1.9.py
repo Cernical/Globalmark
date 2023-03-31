@@ -60,7 +60,7 @@ except:
     print("No arguments given")
 
 # Configuracion basica--------------------------------------------------------------------------------------------------
-version = "4.1.8"
+version = "4.1.9"
 nucleos = "1"
 rangobucle = 30900900
 stresstest = "0"
@@ -494,12 +494,8 @@ if __name__ == '__main__':
                             cabecera_single2 = BoxLayout(orientation='vertical')  # Primer div
 
                             # Crear elementos de cabecera
-                            try:
-                                consola1 = Label(text="Integer: " + single_integer + "s Score: " + single_puntint)
-                                consola2 = Label(text="FP: " + single_fp + "s Score: " + single_puntfp)
-                            except:
-                                consola1 = Label(text="Integer: " + "" + "Score: " + "")
-                                consola2 = Label(text="FP: " + "" + "Score: " + "")
+                            consola1 = Label(text="Integer: " + single_integer + "s Score: " + single_puntint)
+                            consola2 = Label(text="FP: " + single_fp + "s Score: " + single_puntfp)
 
                             consola3 = Label(text="Singlecore Benchmark")
                             null = Label()
@@ -551,8 +547,8 @@ if __name__ == '__main__':
                             consola1 = Label(text="Integer: " + single_integer + "s Score: " + single_puntint)
                             consola2 = Label(text="FP: " + single_fp + "s Score: " + single_puntfp)
                         except:
-                            consola1 = Label(text="Integer: " + "" + "Score: " + "")
-                            consola2 = Label(text="FP: " + "" + "Score: " + "")
+                            consola1 = Label()
+                            consola2 = Label(text="No results")
 
                         consola3 = Label(text="Singlecore Benchmark")
                         null = Label()
@@ -636,12 +632,8 @@ if __name__ == '__main__':
                             cabecera_multi2 = BoxLayout(orientation='vertical')  # Primer div
 
                             # Crear elementos de cabecera
-                            try:
-                                consola1 = Label(text="Integer: " + multi_integer + "s Score: " + multi_puntint)
-                                consola2 = Label(text="FP: " + multi_fp + "s Score: " + multi_puntfp)
-                            except:
-                                consola1 = Label(text="Integer: " + "" + " Score: " + "")
-                                consola2 = Label(text="FP: " + "" + " Score: " + "")
+                            consola1 = Label(text="Integer: " + multi_integer + "s Score: " + multi_puntint)
+                            consola2 = Label(text="FP: " + multi_fp + "s Score: " + multi_puntfp)
 
                             consola3 = Label(text="Multicore Benchmark")
                             null = Label()
@@ -693,8 +685,8 @@ if __name__ == '__main__':
                             consola1 = Label(text="Integer: " + multi_integer + "s Score: " + multi_puntint)
                             consola2 = Label(text="FP: " + multi_fp + "s Score: " + multi_puntfp)
                         except:
-                            consola1 = Label(text="Integer: " + "" + " Score: " + "")
-                            consola2 = Label(text="FP: " + "" + " Score: " + "")
+                            consola1 = Label()
+                            consola2 = Label(text="No results")
 
                         consola3 = Label(text="Multicore Benchmark")
                         null = Label()
