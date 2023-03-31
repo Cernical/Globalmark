@@ -60,7 +60,7 @@ except:
     print("No arguments given")
 
 # Configuracion basica--------------------------------------------------------------------------------------------------
-version = "4.1.8"
+version = "4.1.10"
 nucleos = "1"
 rangobucle = 30900900
 stresstest = "0"
@@ -406,9 +406,6 @@ if __name__ == '__main__':
                 global cabecera
                 global pie
 
-                global modo_gui
-                modo_gui = 1
-
                 global resultadoAintroducir
                 resultadoAintroducir = 0
 
@@ -494,12 +491,8 @@ if __name__ == '__main__':
                             cabecera_single2 = BoxLayout(orientation='vertical')  # Primer div
 
                             # Crear elementos de cabecera
-                            try:
-                                consola1 = Label(text="Integer: " + single_integer + "s Score: " + single_puntint)
-                                consola2 = Label(text="FP: " + single_fp + "s Score: " + single_puntfp)
-                            except:
-                                consola1 = Label(text="Integer: " + "" + "Score: " + "")
-                                consola2 = Label(text="FP: " + "" + "Score: " + "")
+                            consola1 = Label(text="Integer: " + single_integer + "s Score: " + single_puntint)
+                            consola2 = Label(text="FP: " + single_fp + "s Score: " + single_puntfp)
 
                             consola3 = Label(text="Singlecore Benchmark")
                             null = Label()
@@ -551,8 +544,8 @@ if __name__ == '__main__':
                             consola1 = Label(text="Integer: " + single_integer + "s Score: " + single_puntint)
                             consola2 = Label(text="FP: " + single_fp + "s Score: " + single_puntfp)
                         except:
-                            consola1 = Label(text="Integer: " + "" + "Score: " + "")
-                            consola2 = Label(text="FP: " + "" + "Score: " + "")
+                            consola1 = Label()
+                            consola2 = Label(text="No results")
 
                         consola3 = Label(text="Singlecore Benchmark")
                         null = Label()
@@ -636,12 +629,8 @@ if __name__ == '__main__':
                             cabecera_multi2 = BoxLayout(orientation='vertical')  # Primer div
 
                             # Crear elementos de cabecera
-                            try:
-                                consola1 = Label(text="Integer: " + multi_integer + "s Score: " + multi_puntint)
-                                consola2 = Label(text="FP: " + multi_fp + "s Score: " + multi_puntfp)
-                            except:
-                                consola1 = Label(text="Integer: " + "" + " Score: " + "")
-                                consola2 = Label(text="FP: " + "" + " Score: " + "")
+                            consola1 = Label(text="Integer: " + multi_integer + "s Score: " + multi_puntint)
+                            consola2 = Label(text="FP: " + multi_fp + "s Score: " + multi_puntfp)
 
                             consola3 = Label(text="Multicore Benchmark")
                             null = Label()
@@ -693,8 +682,8 @@ if __name__ == '__main__':
                             consola1 = Label(text="Integer: " + multi_integer + "s Score: " + multi_puntint)
                             consola2 = Label(text="FP: " + multi_fp + "s Score: " + multi_puntfp)
                         except:
-                            consola1 = Label(text="Integer: " + "" + " Score: " + "")
-                            consola2 = Label(text="FP: " + "" + " Score: " + "")
+                            consola1 = Label()
+                            consola2 = Label(text="No results")
 
                         consola3 = Label(text="Multicore Benchmark")
                         null = Label()
@@ -738,6 +727,9 @@ if __name__ == '__main__':
                         # Fin Interfaz----------------------------------------------------------------------------------
 
                     if Seleccion == "Stress test":
+                        global input_invalido
+                        input_invalido = 1
+
                         superBox.remove_widget(cabecera)
                         superBox.remove_widget(pie)
 
@@ -748,6 +740,7 @@ if __name__ == '__main__':
                         def on_text(instance, value):
 
                             global resultadoAintroducir
+                            global input_invalido
 
                             print('The widget', instance, 'have:', value)
 
@@ -757,59 +750,67 @@ if __name__ == '__main__':
                             except:
                                 resultadoAintroducir = 0
 
+                            if resultadoAintroducir == 0:
+                                input_invalido = 1
+                            else:
+                                input_invalido = 0
+
                         def callback_stress(instance):
 
-                            global resultadoAintroducir
-                            global cabecera_stress2
-                            global pie_stress2
+                            global input_invalido
 
-                            Seleccion = instance.text  # contiene el string del boton
-                            print(instance.text)
+                            if input_invalido == 0:
+                                global resultadoAintroducir
+                                global cabecera_stress2
+                                global pie_stress2
 
-                            superBox.remove_widget(cabecera_stress)
-                            superBox.remove_widget(pie_stress)
+                                Seleccion = instance.text  # contiene el string del boton
+                                print(instance.text)
 
-                            test(stresstest,resultadoAintroducir)
+                                superBox.remove_widget(cabecera_stress)
+                                superBox.remove_widget(pie_stress)
 
-                            # Interfaz----------------------------------------------------------------------------------
-                            # Widgets de cabecera añadidos en el plano horizontal
-                            cabecera_stress2 = BoxLayout(orientation='vertical')  # Primer div
+                                test(stresstest,resultadoAintroducir)
 
-                            # Crear elementos de cabecera
-                            numero_nucleos = str(resultadoAintroducir)
-                            textinput = Label(text="Running stresstest with " + numero_nucleos + " cores")
+                                # Interfaz------------------------------------------------------------------------------
+                                # Widgets de cabecera añadidos en el plano horizontal
+                                cabecera_stress2 = BoxLayout(orientation='vertical')  # Primer div
 
-                            # Añadir elementos a cabecera
-                            cabecera_stress2.add_widget(textinput)
+                                # Crear elementos de cabecera
+                                numero_nucleos = str(resultadoAintroducir)
+                                textinput = Label(text="Running stresstest with " + numero_nucleos + " cores")
 
-                            # Widgets de pie de página añadidos en el plano vertical
-                            pie_stress2 = BoxLayout(orientation='vertical')
+                                # Añadir elementos a cabecera
+                                cabecera_stress2.add_widget(textinput)
 
-                            # Crear elementos del pie
-                            volver = Button(text="Back", background_color=(1, 0.2, 0.2, 0.7))
-                            volver.bind(on_press=callback)
+                                # Widgets de pie de página añadidos en el plano vertical
+                                pie_stress2 = BoxLayout(orientation='vertical')
 
-                            null1 = Label()
-                            null2 = Label()
-                            null3 = Label()
-                            null4 = Label()
-                            null5 = Label()
+                                # Crear elementos del pie
+                                volver = Button(text="Back", background_color=(1, 0.2, 0.2, 0.7))
+                                volver.bind(on_press=callback)
 
-                            # Añadir elementos al pie
-                            pie_stress2.add_widget(null1)
-                            pie_stress2.add_widget(null2)
-                            pie_stress2.add_widget(null3)
-                            pie_stress2.add_widget(null4)
-                            pie_stress2.add_widget(null5)
-                            pie_stress2.add_widget(volver)
+                                null1 = Label()
+                                null2 = Label()
+                                null3 = Label()
+                                null4 = Label()
+                                null5 = Label()
 
-                            # Añadir cada división al layout global
-                            superBox.add_widget(cabecera_stress2)
-                            superBox.add_widget(pie_stress2)
+                                # Añadir elementos al pie
+                                pie_stress2.add_widget(null1)
+                                pie_stress2.add_widget(null2)
+                                pie_stress2.add_widget(null3)
+                                pie_stress2.add_widget(null4)
+                                pie_stress2.add_widget(null5)
+                                pie_stress2.add_widget(volver)
 
-                            # Mostrar layout completo
-                            # return superBox
-                            # Fin Interfaz------------------------------------------------------------------------------
+                                # Añadir cada división al layout global
+                                superBox.add_widget(cabecera_stress2)
+                                superBox.add_widget(pie_stress2)
+
+                                # Mostrar layout completo
+                                # return superBox
+                                # Fin Interfaz--------------------------------------------------------------------------
                         # ----------------------------------------------------------------------------------------------
 
                         # Interfaz--------------------------------------------------------------------------------------

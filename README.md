@@ -27,6 +27,32 @@ Example: ~./main.py nogui
 
 # Changelog
 
+<h2>v4.1.10</h2>
+
+<b>Features</b>
+
+- Now the stress test won't let run the test without adding more than 0 cores.
+- Code optimizations.
+
+<b>Bugs</b>
+
+- TBD
+
+<hr>
+
+<h2>v4.1.9</h2>
+
+<b>Features</b>
+
+- GUI improvements.
+- Code optimizations.
+
+<b>Bugs</b>
+
+- TBD
+
+<hr>
+
 <h2>v4.1.8</h2>
 
 <b>Features</b>
