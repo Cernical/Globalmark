@@ -60,13 +60,15 @@ except:
     print("No arguments given")
 
 # Configuracion basica--------------------------------------------------------------------------------------------------
-version = "4.1.10"
+version = "4.2.0"
 nucleos = "1"
 rangobucle = 30900900
 stresstest = "0"
 # ----------------------------------------------------------------------------------------------------------------------
 
 def mangodb(usuario, modo, puntint, puntfp, modoRW, arquitectura):
+    global UI
+
     # Dirección base de datos y credenciales
     uri = "mongodb+srv://cliente:globalbench88@globalbenchdb.morfhwo.mongodb.net/?retryWrites=true&w=majority"
     client = MongoClient(uri)   #Declaración cliente
@@ -83,8 +85,9 @@ def mangodb(usuario, modo, puntint, puntfp, modoRW, arquitectura):
         ]
         result = coll.insert_many(doc)  # Comando de ejecución para subir datos
         # result = coll.update_many({}, doc)
-
-        input("Scores uploaded. Press any key to continue: ")
+        
+        if UI == 0:
+            input("Scores uploaded. Press any key to continue: ")
 
     # Modo de lectura
     if modoRW == 0:
@@ -447,6 +450,9 @@ if __name__ == '__main__':
                     global single_fp
                     global single_puntint
                     global single_puntfp
+
+                    global cabecera_score
+                    global pie_score
 
                     if Seleccion == "Single-Core Benchmark":
                         superBox.remove_widget(cabecera)
@@ -862,11 +868,91 @@ if __name__ == '__main__':
                         # Fin Interfaz----------------------------------------------------------------------------------
 
                     if Seleccion == "Scoreboard":
-                        #superBox.remove_widget(cabecera)
-                        #superBox.remove_widget(pie)
+                        global prueba
+                        global prueba2
 
-                        #control_back = "score"
-                        print()
+                        superBox.remove_widget(cabecera)
+                        superBox.remove_widget(pie)
+
+                        control_back = "score"
+
+                        def ejecutar(instance):
+                            global prueba
+                            global prueba2
+
+                            if prueba and prueba2 == 1:
+                                arquitectura = platform.machine()
+                                mangodb("Guest", "Single-Core", single_puntint, single_puntfp, 1, arquitectura)
+                                mangodb("Guest", "Multi-Core", multi_puntint, multi_puntfp, 1, arquitectura)
+
+                        # Interfaz--------------------------------------------------------------------------------------
+                        # Widgets de cabecera añadidos en el plano horizontal
+                        cabecera_score = BoxLayout(orientation='vertical')  # Primer div
+
+                        # Crear elementos de cabecera
+                        try:
+                            consola1 = Label(text="Integer: " + single_integer + "s Score: " + single_puntint)
+                            consola2 = Label(text="FP: " + single_fp + "s Score: " + single_puntfp)
+                            prueba = 1
+                        except:
+                            consola1 = Label(text="No integer results")
+                            consola2 = Label(text="No float results")
+                            prueba = 0
+
+                        try:
+                            consola3 = Label(text="Integer: " + multi_integer + "s Score: " + multi_puntint)
+                            consola4 = Label(text="FP: " + multi_fp + "s Score: " + multi_puntfp)
+                            prueba2 = 1
+                        except:
+                            consola3 = Label(text="No integer results")
+                            consola4 = Label(text="No float results")
+                            prueba2 = 0
+
+                        header1 = Label(text="Scoreboard")
+                        header2 = Label(text="Single core")
+                        header3 = Label(text="Multi core")
+                        null = Label()
+                        null2 = Label()
+
+                        # Añadir elementos a cabecera
+                        cabecera_score.add_widget(header1)
+                        cabecera_score.add_widget(null)
+                        cabecera_score.add_widget(header2)
+                        cabecera_score.add_widget(consola1)
+                        cabecera_score.add_widget(consola2)
+                        cabecera_score.add_widget(null2)
+                        cabecera_score.add_widget(header3)
+                        cabecera_score.add_widget(consola3)
+                        cabecera_score.add_widget(consola4)
+
+                        # Widgets de pie de página añadidos en el plano vertical
+                        pie_score = BoxLayout(orientation='vertical')
+
+                        # Crear elementos del pie
+                        correr = Button(text="Send test", background_color=(1, 0.2, 0.2, 0.7))
+                        correr.bind(on_press=ejecutar)
+
+                        volver = Button(text="Back", background_color=(1, 0.2, 0.2, 0.7))
+                        volver.bind(on_press=callback)
+
+                        null1 = Label()
+                        null2 = Label()
+                        null3 = Label()
+                        null4 = Label()
+                        null5 = Label()
+
+                        # Añadir elementos al pie
+                        pie_score.add_widget(null1)
+                        pie_score.add_widget(null2)
+                        pie_score.add_widget(null3)
+                        pie_score.add_widget(null4)
+                        pie_score.add_widget(correr)
+                        pie_score.add_widget(volver)
+
+                        # Añadir cada división al layout global
+                        superBox.add_widget(cabecera_score)
+                        superBox.add_widget(pie_score)
+                        # Fin Interfaz----------------------------------------------------------------------------------
 
                     if Seleccion == "Back":
                         if control_back == "info":
@@ -916,6 +1002,13 @@ if __name__ == '__main__':
                             else:
                                 superBox.remove_widget(pie_stress)
                                 superBox.remove_widget(cabecera_stress)
+
+                            superBox.add_widget(cabecera)
+                            superBox.add_widget(pie)
+
+                        if control_back == "score":
+                            superBox.remove_widget(pie_score)
+                            superBox.remove_widget(cabecera_score)
 
                             superBox.add_widget(cabecera)
                             superBox.add_widget(pie)
@@ -1011,7 +1104,7 @@ if __name__ == '__main__':
                 stress = Button(text="Stress test", background_color=(1, 0.2, 0.2, 0.7))
                 stress.bind(on_press=callback)
 
-                score = Button(text="Scoreboard", background_color=(1, 0.2, 0.2, 0.3))
+                score = Button(text="Scoreboard", background_color=(1, 0.2, 0.2, 0.7))
                 score.bind(on_press=callback)
 
                 info = Button(text="Info", background_color=(1, 0.2, 0.2, 0.7))
@@ -1034,5 +1127,4 @@ if __name__ == '__main__':
                 # Mostrar layout completo-------------------------------------------------------------------------------
                 return superBox
                 # Fin Interfaz------------------------------------------------------------------------------------------
-
         Globalmark().run()
