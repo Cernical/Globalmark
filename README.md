@@ -27,6 +27,19 @@ Example: ~./main.py nogui
 
 # Changelog
 
+<h2>v4.2.0</h2>
+
+<b>Features</b>
+
+- Added database uploads for GUI mode.
+- Code optimizations.
+
+<b>Bugs</b>
+
+- TBD
+
+<hr>
+
 <h2>v4.1.10</h2>
 
 <b>Features</b>
