@@ -36,7 +36,7 @@ Example: ~./main.py nogui
 
 <b>Bugs</b>
 
-- TBD
+- Database not working on android.
 
 <hr>
 
