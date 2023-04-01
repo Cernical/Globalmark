@@ -31,7 +31,7 @@ Example: ~./main.py nogui
 
 <b>Features</b>
 
-- Added database uploads for GUI mode.
+- Added database uploads as a guest for GUI mode.
 - Code optimizations.
 
 <b>Bugs</b>
