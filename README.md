@@ -1,4 +1,4 @@
-# Globalbench
+# Globalmark
 A Text-based CPU benchmark aimed to be multiplatform with every Python-compatible device with shared scores.
 
 <b>Features</b>
@@ -26,6 +26,19 @@ Example: ~./main.py nogui
 | :-----------: | :-----------: |
 
 # Changelog
+
+<h2>v4.2.0</h2>
+
+<b>Features</b>
+
+- Added database uploads as a guest for GUI mode.
+- Code optimizations.
+
+<b>Bugs</b>
+
+- Database not working on android.
+
+<hr>
 
 <h2>v4.1.10</h2>
 
