@@ -1,4 +1,4 @@
-# Globalbench
+# Globalmark
 A Text-based CPU benchmark aimed to be multiplatform with every Python-compatible device with shared scores.
 
 <b>Features</b>
